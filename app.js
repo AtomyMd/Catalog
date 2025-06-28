@@ -1,15 +1,9 @@
 // База данных товаров
 function getProductImage(id) {
-  const imgPath = `img/products/${id}.jpg`;
-  try {
-    const req = new XMLHttpRequest();
-    req.open('HEAD', imgPath, false);
-    req.send();
-    if (req.status === 200) {
-      return imgPath;
-    }
-  } catch (e) {}
-  return 'img/placeholder.svg';
+  // Простая проверка - возвращаем путь к изображению
+  // Если изображение не существует, браузер автоматически покажет placeholder
+  // благодаря onerror обработчику в HTML
+  return `img/products/${id}.jpg`;
 }
 
 // База данных товаров
@@ -160,7 +154,7 @@ function renderProducts(list) {
     card.className = 'product-card';
     const shortDesc = product.description.length > 80 ? product.description.slice(0, 80) + '...' : product.description;
     card.innerHTML = `
-      <img src="${product.image}" alt="${product.name}" onerror="this.src='data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTMwIiBoZWlnaHQ9IjEzMCIgdmlld0JveD0iMCAwIDEzMCAxMzAiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjxyZWN0IHdpZHRoPSIxMzAiIGhlaWdodD0iMTMwIiBmaWxsPSIjRjVGNUY1Ii8+CjxwYXRoIGQ9Ik02NSA0NUM1My40MDIgNDUgNDQgNTQuNDAyIDQ0IDY2QzQ0IDc3LjU5OCA1My40MDIgODcgNjUgODdDNzYuNTk4IDg3IDg2IDc3LjU5OCA4NiA2NkM4NiA1NC40MDIgNzYuNTk4IDQ1IDY1IDQ1Wk02NSA4MUM1OC4zNzIgODEgNTMgNzUuNjI4IDUzIDY5QzUzIDYyLjM3MiA1OC4zNzIgNTcgNjUgNTdDNzEuNjI4IDU3IDc3IDYyLjM3MiA3NyA2OUM3NyA3NS42MjggNzEuNjI4IDgxIDY1IDgxWiIgZmlsbD0iI0NDQ0NDQyIvPgo8L3N2Zz4K'">
+      <img src="${product.image}" alt="${product.name}" onerror="this.src='img/placeholder.svg'">
       <h3>${product.name}</h3>
       <div class="category">${product.category}</div>
       <div class="description">${shortDesc}</div>
@@ -187,7 +181,7 @@ function showModal(product) {
   }
   
   modalBody.innerHTML = `
-    <img src="${product.image}" alt="${product.name}" style="width:120px;height:120px;object-fit:contain;border-radius:0.7rem;margin-bottom:1rem;background:#fff;" onerror="this.src='data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTIwIiBoZWlnaHQ9IjEyMCIgdmlld0JveD0iMCAwIDEyMCAxMjAiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjxyZWN0IHdpZHRoPSIxMjAiIGhlaWdodD0iMTIwIiBmaWxsPSIjRjVGNUY1Ii8+CjxwYXRoIGQ9Ik02MCA0MkM0OS4wNzIgNDIgNDAgNTEuMDcyIDQwIDYyQzQwIDcyLjkyOCA0OS4wNzIgODIgNjAgODJDNzAuOTI4IDgyIDgwIDcyLjkyOCA4MCA2MkM4MCA1MS4wNzIgNzAuOTI4IDQyIDYwIDQyWk02MCA3NkM1NC4wMzcgNzYgNDkgNzAuOTYzIDQ5IDY1QzQ5IDU5LjAzNyA1NC4wMzcgNTQgNjAgNTRDNjUuOTYzIDU0IDcxIDU5LjAzNyA3MSA2NUM3MSA3MC45NjMgNjUuOTYzIDc2IDYwIDc2WiIgZmlsbD0iI0NDQ0NDQyIvPgo8L3N2Zz4K'">
+    <img src="${product.image}" alt="${product.name}" style="width:120px;height:120px;object-fit:contain;border-radius:0.7rem;margin-bottom:1rem;background:#fff;" onerror="this.src='img/placeholder.svg'">
     <h3 style="margin:0.2rem 0 0.5rem 0;color:var(--accent);">${product.name}</h3>
     <div class="category" style="color:#6a8bbd;margin-bottom:0.5rem;">${product.category}</div>
     <div class="description" style="margin-bottom:0.7rem;">${product.description}</div>

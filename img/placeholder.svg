@@ -1,7 +1,4 @@
-<svg width="300" height="300" viewBox="0 0 300 300" fill="none" xmlns="http://www.w3.org/2000/svg">
-  <rect width="300" height="300" fill="#E3F2FD"/>
-  <rect x="50" y="50" width="200" height="200" fill="#2196F3" rx="10"/>
-  <text x="150" y="130" text-anchor="middle" fill="white" font-family="Arial, sans-serif" font-size="24" font-weight="bold">ATOMY</text>
-  <text x="150" y="160" text-anchor="middle" fill="white" font-family="Arial, sans-serif" font-size="16">PRODUCT</text>
-  <circle cx="150" cy="200" r="30" fill="rgba(255,255,255,0.3)"/>
+<svg width="130" height="130" viewBox="0 0 130 130" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="130" height="130" fill="#F5F5F5"/>
+  <path d="M65 45C53.402 45 44 54.402 44 66C44 77.598 53.402 87 65 87C76.598 87 86 77.598 86 66C86 54.402 76.598 45 65 45ZM65 81C58.372 81 53 75.628 53 69C53 62.372 58.372 57 65 57C71.628 57 77 62.372 77 69C77 75.628 71.628 81 65 81Z" fill="#CCCCCC"/>
 </svg> 
