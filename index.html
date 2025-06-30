@@ -5,15 +5,21 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>ATOMY — Корейская косметика</title>
   <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
 <body>
-  <header>
-    <h1>ATOMY</h1>
+  <header style="display:flex;align-items:center;justify-content:space-between;padding:1rem 2rem;background:#f5f7fa;">
+    <h1 style="margin:0;font-size:1.5rem;">Atomy</h1>
     <nav>
-      <a href="#catalog">Каталог</a>
-      <a href="#contacts">Контакты</a>
+      <a href="#catalog"><i class="fa-solid fa-list"></i> Каталог</a>
+      <a href="#contacts"><i class="fa-solid fa-address-book"></i> Контакты</a>
       <input type="text" id="search-input" placeholder="Поиск по товарам...">
+      <button id="cart-btn" style="background:none;border:none;cursor:pointer;position:relative;">
+        <i class="fa-solid fa-cart-shopping" style="font-size:32px;color:#3a5ba0;"></i>
+        <span id="cart-count" style="position:absolute;top:-8px;right:-8px;background:#e74c3c;color:#fff;border-radius:50%;padding:2px 7px;font-size:0.9rem;display:none;">0</span>
+      </button>
     </nav>
+   
   </header>
   <main>
     <section id="catalog">
@@ -31,8 +37,31 @@
   </main>
   <div id="modal" class="modal">
     <div class="modal-content">
-      <span class="modal-close">&times;</span>
+      <span class="modal-close"><i class="fa-solid fa-xmark"></i></span>
       <div id="modal-body"></div>
+    </div>
+  </div>
+  <div id="cart-modal" class="cart-modal">
+    <div class="cart-modal-content">
+      <div class="cart-modal-header">
+        <h2>Корзина</h2>
+        <button class="cart-modal-close"><i class="fa-solid fa-xmark"></i></button>
+      </div>
+      <div id="cart-items-list" class="cart-items-list"></div>
+      <div class="cart-modal-footer">
+        <div class="cart-total-info">
+          <span>Общая стоимость: </span><span id="cart-total">0 MDL</span>
+        </div>
+        <button id="cart-checkout-btn" class="cart-checkout-btn">Отправить заказ</button>
+      </div>
+    </div>
+  </div>
+  <div id="messenger-modal" class="messenger-modal">
+    <div class="messenger-modal-content">
+      <h3>Куда отправить заказ?</h3>
+      <button id="send-telegram" class="messenger-btn">Telegram</button>
+      <button id="send-whatsapp" class="messenger-btn">WhatsApp</button>
+      <button class="messenger-modal-close">Отмена</button>
     </div>
   </div>
   <footer>
