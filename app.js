@@ -450,13 +450,13 @@ function initApp() {
     messengerModal.addEventListener('click', function(e) {
       if (e.target.id === 'send-telegram') {
         const text = encodeURIComponent(messengerModal.dataset.orderText || '');
-        window.open('https://t.me/share/url?url=&text=' + text, '_blank');
+        window.open('https://t.me/Sultana_Ramazanova/share/url?url=&text=' + text, '_blank');
         closeMessengerModal();
         closeCartModal();
       }
       if (e.target.id === 'send-whatsapp') {
         const text = encodeURIComponent(messengerModal.dataset.orderText || '');
-        window.open('https://wa.me/?text=' + text, '_blank');
+        window.open('https://wa.me/905527908930?text=' + text, '_blank');
         closeMessengerModal();
         closeCartModal();
       }
