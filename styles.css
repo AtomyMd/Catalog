@@ -369,7 +369,7 @@ footer {
 
 @media (max-width: 600px) {
   body {
-    padding: 8px;
+    padding: 10px;
     padding-top: 80px;
   }
   header {
@@ -750,7 +750,7 @@ button i.fa-solid, button i.fa-regular {
 .cart-btn-add.in-cart {
   background: #e3eafc;
   color: #3a5ba0;
-  border: 1.5px solid #3a5ba0;
+  border: 1.5px solid #93ccd8;
   cursor: default;
   box-shadow: none;
 }
@@ -792,4 +792,47 @@ margin: 0;
   nav {
     margin-left: 0.7rem;
   }
+}
+ #category-buttons {
+  display: flex;
+  gap: 10px;
+  width: 100vw;
+  overflow-x: auto;
+  transform: translateX(-10px);
+  padding: 0 10px 10px ;
+position: sticky;
+top: 87px;
+z-index: 1000;
+background: #f7fafd;
+ }
+.category-btn {
+  background: #eaf1f8;
+  flex-shrink: 0;
+  color: var(--accent);
+  border: 1.5px solid var(--accent);
+  border-radius: 2rem;
+  padding: 0.6rem 1.5rem;
+
+  font-size: 1.01rem;
+  font-weight: 500;
+  margin: 0 0.1rem;
+  cursor: pointer;
+  transition: background 0.18s, color 0.18s, border 0.18s, box-shadow 0.18s;
+  box-shadow: 0 2px 8px rgba(58, 123, 213, 0.07);
+}
+.category-btn:hover {
+  background: var(--accent);
+  color: #fff;
+}
+.category-btn.selected {
+  background: var(--accent);
+  color: #fff;
+  border: 2px solid #2561a7;
+  box-shadow: 0 4px 16px #3a7bd533;
 } 
+
+@media (max-width: 500px) {
+  nav a{
+    display: none;
+  }
+}

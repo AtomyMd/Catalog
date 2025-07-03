@@ -337,13 +337,79 @@ function askLoadCart() {
   }
 }
 
+// --- КАТЕГОРИИ ---
+function getUniqueCategories() {
+  const cats = products.map(p => p.category);
+  return ['Все категории', ...Array.from(new Set(cats))];
+}
+
+function getSelectedCategory() {
+  return localStorage.getItem('atomy_selected_category') || 'Все категории';
+}
+
+function setCategory(category) {
+  localStorage.setItem('atomy_selected_category', category);
+  renderCategoryButtons();
+  filterAndRenderProducts();
+  // Прокрутка к началу карточек с учётом отступа до main
+  const container = document.getElementById('products-container');
+  if (container && typeof window.catalogScrollOffset === 'number') {
+    const rect = container.getBoundingClientRect();
+    const scrollY = window.scrollY + rect.top - window.catalogScrollOffset;
+    window.scrollTo({ top: scrollY, behavior: 'smooth' });
+  }
+}
+
+function renderCategoryButtons() {
+  const container = document.getElementById('category-buttons');
+  if (!container) return;
+  const categories = getUniqueCategories();
+  const selected = getSelectedCategory();
+  container.innerHTML = '';
+  categories.forEach(cat => {
+    const btn = document.createElement('button');
+    btn.textContent = cat;
+    btn.className = 'category-btn';
+    if (cat === selected) btn.classList.add('selected');
+    btn.addEventListener('click', () => setCategory(cat));
+    container.appendChild(btn);
+  });
+}
+
+function filterAndRenderProducts() {
+  const selectedCategory = getSelectedCategory();
+  const searchInput = document.getElementById('search-input');
+  const query = searchInput ? searchInput.value.trim().toLowerCase() : '';
+  let filtered = products;
+  if (selectedCategory && selectedCategory !== 'Все категории') {
+    filtered = filtered.filter(product => product.category === selectedCategory);
+  }
+  if (query) {
+    filtered = filtered.filter(product =>
+      product.name.toLowerCase().includes(query) ||
+      product.category.toLowerCase().includes(query) ||
+      product.description.toLowerCase().includes(query)
+    );
+  }
+  renderProducts(filtered);
+}
+
 function initApp() {
   if (!checkDOMElements()) {
     console.error('Приложение не может быть инициализировано из-за отсутствующих элементов');
     return;
   }
+  // Вычисляем расстояние от верха экрана до main
+  const main = document.querySelector('main');
+  if (main) {
+    const rect = main.getBoundingClientRect();
+    window.catalogScrollOffset = rect.top + window.scrollY;
+  } else {
+    window.catalogScrollOffset = 0;
+  }
   askLoadCart();
-  renderProducts(products);
+  renderCategoryButtons();
+  filterAndRenderProducts();
   updateCartCount();
   // --- События ---
   // Кнопка корзины
@@ -360,13 +426,7 @@ function initApp() {
   const searchInput = document.getElementById('search-input');
   if (searchInput) {
     searchInput.addEventListener('input', function() {
-      const query = this.value.trim().toLowerCase();
-      const filtered = products.filter(product =>
-        product.name.toLowerCase().includes(query) ||
-        product.category.toLowerCase().includes(query) ||
-        product.description.toLowerCase().includes(query)
-      );
-      renderProducts(filtered);
+      filterAndRenderProducts();
     });
   }
   // Клик по товарам (добавить в корзину, подробнее)
@@ -450,7 +510,10 @@ function initApp() {
     messengerModal.addEventListener('click', function(e) {
       if (e.target.id === 'send-telegram') {
         const text = encodeURIComponent(messengerModal.dataset.orderText || '');
-        window.open('https://t.me/Sultana_Ramazanova/share/url?url=&text=' + text, '_blank');
+        window.open(
+          `https://t.me/Sultana_Ramazanova?text=${text}`,
+          '_blank'
+        );
         closeMessengerModal();
         closeCartModal();
       }
