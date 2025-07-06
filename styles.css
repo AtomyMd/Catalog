@@ -26,8 +26,6 @@ body {
 
 header {
   background: rgba(234, 241, 248, 0.85);
-  padding: 1.5rem 0 1.1rem 0;
-  text-align: center;
   border-bottom: 1px solid var(--border);
   box-shadow: 0 4px 24px rgba(58, 123, 213, 0.10);
   position: fixed;
@@ -59,7 +57,6 @@ header h1 {
 }
 
 nav {
-  margin-top: 0.3rem;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -71,7 +68,7 @@ nav {
   backdrop-filter: blur(6px);
   -webkit-backdrop-filter: blur(6px);
   transition: background 0.3s;
-flex-grow: 1;
+  flex-grow: 1;
 }
 nav a {
   color: var(--accent);
@@ -337,6 +334,7 @@ footer {
   display: flex;
 }
 .modal-content {
+ height: calc(100dvh - 32px);
   background: #fff;
   margin: auto;
   border-radius: var(--radius);
@@ -347,6 +345,34 @@ footer {
   box-shadow: 0 8px 32px rgba(58, 123, 213, 0.16);
   position: relative;
   animation: modalIn 0.22s;
+  overflow: hidden;
+  justify-content: start;
+}
+
+#modal-body {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  max-height: 100%;
+  height: 100%;
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  left: 10px;
+  bottom: 0;
+  align-items: center;
+  padding-bottom: 10px;
+}
+
+.modal-content .description {
+  overflow-y: auto;
+  flex-grow: 1;
+  white-space: pre-line;
+  padding-right: 8px;
+  background: var(--card-bg);
+  padding: 8px;
+  border-radius: 8px;
+  line-height: 130%;
 }
 @keyframes modalIn {
   from { transform: translateY(40px); opacity: 0; }
@@ -361,6 +387,7 @@ footer {
   cursor: pointer;
   font-weight: bold;
   transition: color 0.2s, transform 0.15s;
+  z-index: 2;
 }
 .modal-close:hover {
   color: var(--btn-hover);
@@ -486,7 +513,7 @@ html {
 }
 
 #cart-btn {
-  position: static;
+  position: relative;
   margin-right: 0;
   background: #fff;
   border-radius: 50%;
@@ -511,8 +538,8 @@ html {
 }
 #cart-count {
   position: absolute;
-  top: 4px;
-  right: 4px;
+  top: 0;
+  right: 0;
   background: #e74c3c;
   color: #fff;
   border-radius: 50%;
@@ -748,11 +775,12 @@ button i.fa-solid, button i.fa-regular {
   box-shadow: 0 4px 16px #3a7bd533;
 }
 .cart-btn-add.in-cart {
-  background: #e3eafc;
-  color: #3a5ba0;
-  border: 1.5px solid #93ccd8;
-  cursor: default;
-  box-shadow: none;
+  background: #e3eafc !important;
+  color: #3a5ba0 !important;
+  border: 1.5px solid #93ccd8 !important;
+  cursor: default !important;
+  box-shadow: none !important;
+  transform: none !important;
 }
 .details-btn {
   display: flex;
@@ -793,18 +821,18 @@ margin: 0;
     margin-left: 0.7rem;
   }
 }
- #category-buttons {
+#category-buttons {
   display: flex;
   gap: 10px;
   width: 100vw;
   overflow-x: auto;
   transform: translateX(-10px);
-  padding: 0 10px 10px ;
-position: sticky;
-top: 87px;
-z-index: 1000;
-background: #f7fafd;
- }
+  padding: 0 10px 10px;
+  position: sticky;
+  top: 87px;
+  z-index: 1000;
+  background: #f7fafd;
+}
 .category-btn {
   background: #eaf1f8;
   flex-shrink: 0;
@@ -832,7 +860,7 @@ background: #f7fafd;
 } 
 
 @media (max-width: 500px) {
-  nav a{
+  nav a {
     display: none;
   }
 }
