@@ -286,7 +286,7 @@ const products = [
     name: 'coffe arabica black',
     price: 360,
     image: getProductImage(10),
-    category: 'Без категории',
+    category: 'Пищевая добавка',
     description:
       `
       80 стиков по 2 г | Всего 160 г
@@ -316,7 +316,7 @@ const products = [
     name: 'coffe arabica brown',
     price: 205,
     image: getProductImage(11),
-    category: 'Без категории',
+    category: 'Пищевая добавка',
     description:
       `
      50 стиков по 12 г | Всего 600 г
@@ -1651,7 +1651,7 @@ BB Крем Absolute №23 многофункциональное средств
 
   { 
     id: 73,
-     name: ' ХемоХИМ', 
+     name: 'HEMOHIM ', 
      price: 3000, 
      image: getProductImage(73), 
      category: 'Пищевая добавка',
